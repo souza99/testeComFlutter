@@ -11,6 +11,7 @@ void main() async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
     String caminho = join(await getDatabasesPath(), 'banco.db');
+    deleteDatabase(caminho);
     db = await Conexao.abrir();
   });
 
