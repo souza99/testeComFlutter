@@ -8,17 +8,22 @@ class Conexao {
   static Future<Database> abrir() async {
     if (_db == null) {
       String caminho = join(await getDatabasesPath(), 'banco.db');
-      _db = await openDatabase(caminho, version: 1, onCreate: (db, version) {
+      _db = await openDatabase(
+        caminho,
+        version: 1,
+        onCreate: (db, version) {
 //        criarBanco.forEach((elemento) {
 //          db.execute(elemento);
 //        });
 
 //        criarBanco.forEach(db.execute);
 
-        for (var comando in criarBanco) {
-          db.execute(comando);
-        }
-      });
+          for (var comando in criarBanco) {
+            db.execute(comando);
+          }
+        },
+      );
     }
+    return _db!;
   }
 }
